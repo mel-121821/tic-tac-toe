@@ -55,10 +55,64 @@ table {
 
 /*__________________________________________*/
 
+:root {
+   --bg-color: rgba(37, 224, 27, 0.414); 
+}
+
 * {
     margin: 0;
     padding: 0;
     /*remove default margin/padding */
     box-sizing: border-box;
     /*change box-size to include padding and border */
+}
+
+body {
+    font-size: 16px;
+    display: grid;
+    grid-template-rows: 70px 1fr 50px;
+    height: 100vh;
+}
+
+/* _______________Header_________________ */
+
+.header {
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--bg-color);
+}
+
+/*_______________Main_______________*/
+
+.main {
+    background-image: url('img/bg-clover.jpg');
+    background-size: cover;
+}
+
+/*_______________Footer_______________*/
+
+.footer {
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icon > a > .svg{
+    height: 40px;
+    width: 40px;
+    pointer-events: none;
 }
