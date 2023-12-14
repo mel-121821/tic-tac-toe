@@ -6,30 +6,58 @@
 // think carefully about where each bit of logic should reside, each piece of functionality should be able to fit in the game, player or gameboard objects. Spend some time brainstorming here
 // focus on getting a working game in the console first...
 
+
+// _______________Game Board__________________________
+
 const createGameBoard = (function() {
     // This variable should be private so that the user cannot manipulate it directly
     const gameBoard = Array.apply(null, Array(9));
-    console.log(gameBoard)
+    // console.log(gameBoard)
 
-    const placeMarker = (marker, arrayPlace) => {
+    const markBoard = (marker, arrayPlace) => {
         if (typeof gameBoard[arrayPlace] == "undefined") {
         gameBoard.splice(arrayPlace, 1, `${marker}`);
         console.log(gameBoard);
         } else {
             // do nothing
-            console.log("Do nothing")
+            console.log("There is a marker here already")
         }
     };
     return {
-        placeMarker,
+        markBoard,
     }
 })();
 
-console.log(createGameBoard.placeMarker("X", 4));
-console.log(createGameBoard.placeMarker("O", 4));
-console.log(createGameBoard.placeMarker("M", 1))
+console.log(createGameBoard.markBoard("X", 4));
+console.log(createGameBoard.markBoard("O", 4));
+console.log(createGameBoard.markBoard("M", 1))
 
-// function createPlayer(name, marker) {
-//     const name = name;
-//     const marker = marker
-// }
+
+
+
+// _________________Players__________________________
+
+function createPlayer(name, marker) {
+    // const name = name;
+    // const marker = marker
+    // You don't need to define name and marker with const. You are defining them when you return the object with the name and marker
+    function placeMarker(input){
+        createGameBoard.markBoard(marker, input)
+    }
+    
+    return {name, marker, placeMarker};
+}
+
+const steve = createPlayer("Steve", "X");
+console.log(steve.name);
+console.log(steve.marker);
+console.log(steve.placeMarker(0))
+
+const dustin = createPlayer("Dustin", "O");
+console.log(dustin.name);
+console.log(dustin.marker);
+console.log(dustin.placeMarker(2))
+
+
+
+// _________________Game__________________________
