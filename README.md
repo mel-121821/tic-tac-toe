@@ -2,7 +2,7 @@ Project: Tic Tac Toe
 
 Instructions:
 
-- [ ] Set up your project with HTML, CSS and Javascript files and get the Git repo all set up.
+- [x] Set up your project with HTML, CSS and Javascript files and get the Git repo all set up.
 
 - [ ] You’re going to store the gameboard as an array inside of a Gameboard object, so start there! Your players are also going to be stored in objects, and you’re probably going to want an object to control the flow of the game itself.
 
@@ -37,3 +37,12 @@ ____________________________________________
 
 
 Resources:
+
+Create an empty array of a given size:
+https://stackoverflow.com/questions/34937349/javascript-create-empty-array-of-a-given-size
+
+Using .splice() to replace items in an array:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+How to check if an array value is undefined:
+https://stackoverflow.com/questions/2673147/javascript-array-value-is-undefined-how-do-i-test-for-that
