@@ -9,15 +9,25 @@
 
 // _______________Game Board__________________________
 
-const createGameBoard = (function() {
+const gameBoard = (function() {
     // This variable should be private so that the user cannot manipulate it directly
-    const gameBoard = Array.apply(null, Array(9));
+    const rows = 3;
+    const columns = 3;
+    const board = [];
+
+    for (let i = 0; i < rows; i++) {
+        board[i] = [];
+        for (let j = 0; j < columns; j++) {
+            board[i].push("");
+        }
+    }
     // console.log(gameBoard)
 
-    const markBoard = (marker, arrayPlace) => {
-        if (typeof gameBoard[arrayPlace] == "undefined") {
-        gameBoard.splice(arrayPlace, 1, `${marker}`);
-        console.log(gameBoard);
+    const markBoard = (marker, arrayRow, arrayColumn) => {
+        if (board[arrayRow][arrayColumn] == "") {
+        board[arrayRow][arrayColumn] = `${marker}`;
+        // board.splice(arrayRow, arrayColumn, 1, `${marker}`);
+        console.log(board);
         } else {
             // do nothing
             console.log("There is a marker here already")
@@ -28,9 +38,9 @@ const createGameBoard = (function() {
     }
 })();
 
-console.log(createGameBoard.markBoard("X", 4));
-console.log(createGameBoard.markBoard("O", 4));
-console.log(createGameBoard.markBoard("M", 1))
+// console.log(gameBoard.markBoard("X", 0, 0));
+// console.log(gameBoard.markBoard("O", 0, 0));
+// console.log(gameBoard.markBoard("M", 2, 2))
 
 
 
@@ -41,22 +51,26 @@ function createPlayer(name, marker) {
     // const name = name;
     // const marker = marker
     // You don't need to define name and marker with const. You are defining them when you return the object with the name and marker
-    function placeMarker(input){
-        createGameBoard.markBoard(marker, input)
+    function placeMarker(inputRow, inputColumn){
+        gameBoard.markBoard(marker, inputRow, inputColumn)
     }
     
     return {name, marker, placeMarker};
 }
 
-const steve = createPlayer("Steve", "X");
-console.log(steve.name);
-console.log(steve.marker);
-console.log(steve.placeMarker(0))
+// const steve = createPlayer("Steve", "X");
+// console.log(steve.name);
+// console.log(steve.marker);
+// console.log(steve.placeMarker(0, 0))
+// console.log(steve.placeMarker(0, 1))
 
-const dustin = createPlayer("Dustin", "O");
-console.log(dustin.name);
-console.log(dustin.marker);
-console.log(dustin.placeMarker(2))
+// const dustin = createPlayer("Dustin", "O");
+// console.log(dustin.name);
+// console.log(dustin.marker);
+// console.log(dustin.placeMarker(1, 0))
+// console.log(dustin.placeMarker(1, 0))
+
+
 
 
 
