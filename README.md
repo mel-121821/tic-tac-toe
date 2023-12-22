@@ -46,3 +46,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 How to check if an array value is undefined:
 https://stackoverflow.com/questions/2673147/javascript-array-value-is-undefined-how-do-i-test-for-that
+
+2D Arrays:
+https://www.freecodecamp.org/news/javascript-2d-arrays/
