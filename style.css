@@ -90,7 +90,7 @@ body {
 
 .main {
     background-image: url('img/bg-clover.jpg');
-    background-size: cover;
+    background-size: contain;
 }
 
 /*_______________Footer_______________*/
