@@ -62,8 +62,6 @@ const Players = function() {
     ]
 
     const getPlayers = () => players;
-
-    
     
     return {getPlayers};
 }();
@@ -79,11 +77,11 @@ const Players = function() {
 
 const game = function() {
     let activePlayer = Players.getPlayers()[0];
-    console.log(activePlayer);
+    // console.log(activePlayer);
 
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === Players.getPlayers()[0] ? Players.getPlayers()[1] : Players.getPlayers()[0];
-        console.log(activePlayer);
+        // console.log(activePlayer);
     }
 
     const getActivePlayer = () => activePlayer;
@@ -92,9 +90,16 @@ const game = function() {
         gameBoard.markBoard(getActivePlayer().marker, inputRow, inputColumn)
     }
 
+    function playRound(inputRow, inputColumn) {
+        console.log(`${getActivePlayer().name}'s turn`)
+        placeMarker(inputRow, inputColumn);
+        // need to prevent player switch if placeMarker fails
+        switchPlayerTurn();
+    }
+
     // switchPlayerTurn();
 
-    return {switchPlayerTurn, getActivePlayer, placeMarker}
+    return {getActivePlayer, playRound}
 
 }();
 
