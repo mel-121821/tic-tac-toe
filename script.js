@@ -4,10 +4,10 @@
 // have as little global code as possible, tuck as much as you can in factories
 // if you only need a single instance of something (eg. the gameboard, the displayController etc.), then wrap the factory inside an IFFE so it cannot be used to create additional instances
 // think carefully about where each bit of logic should reside, each piece of functionality should be able to fit in the game, player or gameboard objects. Spend some time brainstorming here
-// focus on getting a working game in the console first...
+// focus on getting a working game in the console first..
 
 
-// _______________Game Board__________________________
+// ___________Game Board______________
 
 const gameBoard = (function() {
     // This variable should be private so that the user cannot manipulate it directly
@@ -21,12 +21,11 @@ const gameBoard = (function() {
             board[i].push("");
         }
     }
-    // console.log(gameBoard)
+    // console.log(board);
 
     const markBoard = (marker, arrayRow, arrayColumn) => {
         if (board[arrayRow][arrayColumn] == "") {
         board[arrayRow][arrayColumn] = `${marker}`;
-        // board.splice(arrayRow, arrayColumn, 1, `${marker}`);
         console.log(board);
         } else {
             // do nothing
@@ -45,20 +44,75 @@ const gameBoard = (function() {
 
 
 
-// _________________Players__________________________
+// ____________Players________________
 
-function createPlayer(name, marker) {
+const Players = function() {
+    const playerOne = "Player One"
+    const playerTwo = "Player Two"
+
+    const players = [
+        {
+            name: playerOne,
+            marker: "X"
+        },
+        {
+            name: playerTwo,
+            marker: "O"
+        }
+    ]
+
+    const getPlayers = () => players;
+
+    
+    
+    return {getPlayers};
+}();
+
+
+
+
+
+
+
+// __________Game Flow______________
+
+
+const game = function() {
+    let activePlayer = Players.getPlayers()[0];
+    console.log(activePlayer);
+
+    const switchPlayerTurn = () => {
+        activePlayer = activePlayer === Players.getPlayers()[0] ? Players.getPlayers()[1] : Players.getPlayers()[0];
+        console.log(activePlayer);
+    }
+
+    const getActivePlayer = () => activePlayer;
+
+    function placeMarker(inputRow, inputColumn){
+        gameBoard.markBoard(getActivePlayer().marker, inputRow, inputColumn)
+    }
+
+    // switchPlayerTurn();
+
+    return {switchPlayerTurn, getActivePlayer, placeMarker}
+
+}();
+
+
+
+
+
+
+
+
+//______________Unused code_____________
+
+// function createPlayer(name, marker) {
     // const name = name;
     // const marker = marker
     // You don't need to define name and marker with const. You are defining them when you return the object with the name and marker
-    function placeMarker(inputRow, inputColumn){
-        gameBoard.markBoard(marker, inputRow, inputColumn)
-    }
-    
-    return {name, marker, placeMarker};
-}
 
-// const steve = createPlayer("Steve", "X");
+    // const steve = createPlayer("Steve", "X");
 // console.log(steve.name);
 // console.log(steve.marker);
 // console.log(steve.placeMarker(0, 0))
@@ -69,9 +123,3 @@ function createPlayer(name, marker) {
 // console.log(dustin.marker);
 // console.log(dustin.placeMarker(1, 0))
 // console.log(dustin.placeMarker(1, 0))
-
-
-
-
-
-// _________________Game__________________________
