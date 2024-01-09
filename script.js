@@ -22,9 +22,10 @@ const gameBoard = (function() {
         }
     }
     // console.log(board);
+    
 
     let moveValid = true;
-    console.log(moveValid);
+    // console.log(moveValid);
 
     const markBoard = (marker, arrayRow, arrayColumn) => {
         if (board[arrayRow][arrayColumn] == "") {
@@ -100,14 +101,24 @@ const game = function() {
     }
 
     function playRound(inputRow, inputColumn) {
-        console.log(`${getActivePlayer().name}'s turn`)
+        console.log(`${getActivePlayer().name} marks the board...`)
         placeMarker(inputRow, inputColumn);
-        // need to prevent player switch if placeMarker fails
-        console.log(gameBoard.checkValidity());
-        switchPlayerTurn();
+        // console.log(gameBoard.checkValidity());
+        if (gameBoard.checkValidity() == true) {
+            switchPlayerTurn();
+            printNewRound();
+        } else {
+            // do nothing
+            console.log("Please choose a different square")
+            printNewRound();
+        }
     }
 
-    // switchPlayerTurn();
+    const printNewRound = () => {
+        console.log(`${getActivePlayer().name}'s turn`);
+    }
+
+    printNewRound();
 
     return {getActivePlayer, playRound}
 
