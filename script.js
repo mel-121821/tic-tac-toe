@@ -23,17 +23,26 @@ const gameBoard = (function() {
     }
     // console.log(board);
 
+    let moveValid = true;
+    console.log(moveValid);
+
     const markBoard = (marker, arrayRow, arrayColumn) => {
         if (board[arrayRow][arrayColumn] == "") {
         board[arrayRow][arrayColumn] = `${marker}`;
         console.log(board);
+        moveValid = true;
         } else {
             // do nothing
+            moveValid = false;
             console.log("There is a marker here already")
         }
     };
+
+    const checkValidity = () => moveValid;
+    
+
     return {
-        markBoard,
+        markBoard, checkValidity,
     }
 })();
 
@@ -94,6 +103,7 @@ const game = function() {
         console.log(`${getActivePlayer().name}'s turn`)
         placeMarker(inputRow, inputColumn);
         // need to prevent player switch if placeMarker fails
+        console.log(gameBoard.checkValidity());
         switchPlayerTurn();
     }
 
