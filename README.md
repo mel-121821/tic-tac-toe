@@ -49,3 +49,6 @@ https://stackoverflow.com/questions/2673147/javascript-array-value-is-undefined-
 
 2D Arrays:
 https://www.freecodecamp.org/news/javascript-2d-arrays/
+
+How to check if all values in an array are equal:
+https://dev.to/rajnishkatharotiya/function-to-check-if-all-records-are-equal-in-array-javascript-3mo3
