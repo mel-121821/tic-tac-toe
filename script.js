@@ -22,6 +22,9 @@ const gameBoard = (function() {
         }
     }
     // console.log(board);
+    // console.log(board[0])
+    // console.log(board[1]);
+    // console.log(board[2])
     
 
     let moveValid = true;
@@ -30,8 +33,8 @@ const gameBoard = (function() {
     const markBoard = (marker, arrayRow, arrayColumn) => {
         if (board[arrayRow][arrayColumn] == "") {
         board[arrayRow][arrayColumn] = `${marker}`;
-        console.log(board);
-        moveValid = true;
+            console.log(board);
+            moveValid = true;
         } else {
             // do nothing
             moveValid = false;
@@ -41,9 +44,23 @@ const gameBoard = (function() {
 
     const checkValidity = () => moveValid;
     
+    const checkMatch = () => {
+        // console.log(board[0])
+        // console.log(board[0][0]);
+        // let result = 
+        // console.log(board[0][0].length);
+        if (board[0].every(val => val === board[0][0]) && (board[0][0].length) > 0) {
+            result = true
+        } else {
+            result = false
+        }
+        console.log(result)
+    }
+
+    checkMatch();
 
     return {
-        markBoard, checkValidity,
+        markBoard, checkValidity, checkMatch
     }
 })();
 
@@ -107,6 +124,7 @@ const game = function() {
         if (gameBoard.checkValidity() == true) {
             switchPlayerTurn();
             printNewRound();
+            gameBoard.checkMatch();
         } else {
             // do nothing
             console.log("Please choose a different square")
