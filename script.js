@@ -23,7 +23,7 @@ const gameBoard = (function() {
     //     }
     // }
 
-    let board = [[1,1,1],["","",""],[7,8,9]];
+    let board = [[1,1,1],[1,1,6],[1,8,1]];
     
 
     let moveValid = true;
@@ -46,7 +46,7 @@ const gameBoard = (function() {
 
     const arrayMatch = (array) => {
         // console.log(array);
-        console.log(array[0]);
+        // console.log(array[0]);
         if (array.every(val => val === array[0]) && (array[0] !== "")) {
             result = true
         } else {
@@ -54,19 +54,47 @@ const gameBoard = (function() {
         }
     };
     
+    let allBoardCombos = [];
+
+    const getAllBoardCombos = () => {
+        
+        for (let row of board) {
+            // console.log(row)
+            allBoardCombos.push(row)
+            // console.log(allBoardCombos)
+            }
+        for (let c = 0; c < board[0].length; c++) {
+            let col = board.map(function(value,index) { return value[c];});
+            allBoardCombos.push(col);
+        }
+        allBoardCombos.push([board[0][0], board[1][1], board[2][2]]);
+        allBoardCombos.push([board[2][0], board[1][1], board[0][2]]);
+        return allBoardCombos; 
+    }
 
     const checkBoard = () => {
-        for (let row of board) {
-        console.log(row)
-        arrayMatch(row);
-        console.log(result)
-        }
-        for (let n = 0; n < board[0].length; n++) {
-            let col = board.map(function(value,index) { return value[n];});
-            console.log(col);
-            arrayMatch(col);
+        getAllBoardCombos();
+        console.log(allBoardCombos);
+        for (combo of allBoardCombos) {
+            arrayMatch(combo);
             console.log(result)
-        }  
+        }
+        
+        // for (let row of board) {
+        // console.log(row)
+        // arrayMatch(row);
+        // console.log(result)
+        // }
+        // for (let c = 0; c < board[0].length; c++) {
+        //     let col = board.map(function(value,index) { return value[c];});
+        //     console.log(col);
+        //     arrayMatch(col);
+        //     console.log(result)
+        // }  
+        // const diag1 = [board[0][0], board[1][1], board[2][2]];
+        // const diag2 = [board[2][0], board[1][1], board[0][2]];
+        // console.log(diag1);
+        // console.log(diag2);
     }
 
     checkBoard();
