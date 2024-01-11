@@ -11,20 +11,19 @@
 
 const gameBoard = (function() {
     // This variable should be private so that the user cannot manipulate it directly
-    const rows = 3;
-    const columns = 3;
-    const board = [];
 
-    for (let i = 0; i < rows; i++) {
-        board[i] = [];
-        for (let j = 0; j < columns; j++) {
-            board[i].push("");
-        }
-    }
-    // console.log(board);
-    // console.log(board[0])
-    // console.log(board[1]);
-    // console.log(board[2])
+    // const rows = 3;
+    // const columns = 3;
+    // const board = [];
+
+    // for (let i = 0; i < rows; i++) {
+    //     board[i] = [];
+    //     for (let j = 0; j < columns; j++) {
+    //         board[i].push("");
+    //     }
+    // }
+
+    let board = [[1,1,1],["","",""],[7,8,9]];
     
 
     let moveValid = true;
@@ -44,23 +43,36 @@ const gameBoard = (function() {
 
     const checkValidity = () => moveValid;
     
-    const checkMatch = () => {
-        // console.log(board[0])
-        // console.log(board[0][0]);
-        // let result = 
-        // console.log(board[0][0].length);
-        if (board[0].every(val => val === board[0][0]) && (board[0][0].length) > 0) {
+
+    const arrayMatch = (array) => {
+        // console.log(array);
+        console.log(array[0]);
+        if (array.every(val => val === array[0]) && (array[0] !== "")) {
             result = true
         } else {
             result = false
         }
+    };
+    
+
+    const checkBoard = () => {
+        for (let row of board) {
+        console.log(row)
+        arrayMatch(row);
         console.log(result)
+        }
+        for (let n = 0; n < board[0].length; n++) {
+            let col = board.map(function(value,index) { return value[n];});
+            console.log(col);
+            arrayMatch(col);
+            console.log(result)
+        }  
     }
 
-    checkMatch();
+    checkBoard();
 
     return {
-        markBoard, checkValidity, checkMatch
+        markBoard, checkValidity, checkBoard
     }
 })();
 
@@ -122,9 +134,9 @@ const game = function() {
         placeMarker(inputRow, inputColumn);
         // console.log(gameBoard.checkValidity());
         if (gameBoard.checkValidity() == true) {
-            switchPlayerTurn();
+            // switchPlayerTurn();
             printNewRound();
-            gameBoard.checkMatch();
+            gameBoard.checkBoard();
         } else {
             // do nothing
             console.log("Please choose a different square")
