@@ -23,7 +23,7 @@ const gameBoard = (function() {
         }
     }
 
-    // let board = [[1,1,1],[1,1,6],[1,8,1]];
+    // let board = [["X","O","X"],["O","O","X"],["O","X",""]];
     
 
     let moveValid = true;
@@ -74,22 +74,55 @@ const gameBoard = (function() {
     }
 
     const checkBoard = () => {
+        checkAvailableSpaces();
         getAllBoardCombos();
         for (combo of allBoardCombos) {
             arrayMatch(combo);
             if (result === true) {
                 break
             }
-            console.log(result)
+            // console.log(result)
         }
         resetAllBoardCombos();
+    }
+
+    const checkAvailableSpaces = () => {
+        boardFull = false;
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                // console.log(board[i][j])
+                if (board[i][j] === "") {
+                    boardFull = false;
+                    break;
+                } else {
+                    boardFull = true;
+                }
+            }
+        }
+        return boardFull;
+        // console.log(board)
+        // console.log(boardFull)
+    }
+
+    const clearBoard = () => {
+        for (let i = 0; i < board.length; i++) {
+            // console.log(board.length)
+            // console.log(board[i])
+            for (let j = 0; j < board[i].length; j++) {
+                // console.log(board[i].length)
+                // console.log(board[i][j]);
+                board[i][j] = "";
+            }
+        }
+        
+        console.log(board);
     }
 
 
     checkBoard();
 
     return {
-        markBoard, checkValidMove, checkBoard
+        markBoard, checkValidMove, checkBoard, clearBoard
     }
 })();
 
@@ -152,7 +185,8 @@ const game = function() {
         // console.log(gameBoard.checkValidMove());
         if (gameBoard.checkValidMove() == true) {
             gameBoard.checkBoard();
-            console.log(result);
+            console.log(`Is there a winner? ${result}`);
+            console.log(`Is the board full? ${boardFull}`)
             checkForWinner();
         } else {
             // do nothing
@@ -168,6 +202,10 @@ const game = function() {
     const checkForWinner = () => {
         if (result === true) {
             console.log(`${getActivePlayer().name} wins!`)
+            // gameBoard.clearBoard();
+        } else if (result === false && boardFull === true) {
+            console.log("Tie game!")
+            // gameBoard.clearBoard();
         } else {
             switchPlayerTurn();
             printNewRound();
