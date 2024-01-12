@@ -53,6 +53,9 @@ https://www.freecodecamp.org/news/javascript-2d-arrays/
 How to check if all values in an array are equal:
 https://dev.to/rajnishkatharotiya/function-to-check-if-all-records-are-equal-in-array-javascript-3mo3
 
+Getting columns from a 2D Array:
+https://stackoverflow.com/questions/7848004/get-column-from-a-two-dimensional-array
+
 For...of loops:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
 
