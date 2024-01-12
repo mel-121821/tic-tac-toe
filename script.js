@@ -12,18 +12,18 @@
 const gameBoard = (function() {
     // This variable should be private so that the user cannot manipulate it directly
 
-    // const rows = 3;
-    // const columns = 3;
-    // const board = [];
+    const rows = 3;
+    const columns = 3;
+    const board = [];
 
-    // for (let i = 0; i < rows; i++) {
-    //     board[i] = [];
-    //     for (let j = 0; j < columns; j++) {
-    //         board[i].push("");
-    //     }
-    // }
+    for (let i = 0; i < rows; i++) {
+        board[i] = [];
+        for (let j = 0; j < columns; j++) {
+            board[i].push("");
+        }
+    }
 
-    let board = [[1,1,1],[1,1,6],[1,8,1]];
+    // let board = [[1,1,1],[1,1,6],[1,8,1]];
     
 
     let moveValid = true;
@@ -41,7 +41,7 @@ const gameBoard = (function() {
         }
     };
 
-    const checkValidity = () => moveValid;
+    const checkValidMove = () => moveValid;
     
 
     const arrayMatch = (array) => {
@@ -57,11 +57,8 @@ const gameBoard = (function() {
     let allBoardCombos = [];
 
     const getAllBoardCombos = () => {
-        
         for (let row of board) {
-            // console.log(row)
             allBoardCombos.push(row)
-            // console.log(allBoardCombos)
             }
         for (let c = 0; c < board[0].length; c++) {
             let col = board.map(function(value,index) { return value[c];});
@@ -72,35 +69,27 @@ const gameBoard = (function() {
         return allBoardCombos; 
     }
 
+    const resetAllBoardCombos = () => {
+        allBoardCombos = [];
+    }
+
     const checkBoard = () => {
         getAllBoardCombos();
-        console.log(allBoardCombos);
         for (combo of allBoardCombos) {
             arrayMatch(combo);
+            if (result === true) {
+                break
+            }
             console.log(result)
         }
-        
-        // for (let row of board) {
-        // console.log(row)
-        // arrayMatch(row);
-        // console.log(result)
-        // }
-        // for (let c = 0; c < board[0].length; c++) {
-        //     let col = board.map(function(value,index) { return value[c];});
-        //     console.log(col);
-        //     arrayMatch(col);
-        //     console.log(result)
-        // }  
-        // const diag1 = [board[0][0], board[1][1], board[2][2]];
-        // const diag2 = [board[2][0], board[1][1], board[0][2]];
-        // console.log(diag1);
-        // console.log(diag2);
+        resetAllBoardCombos();
     }
+
 
     checkBoard();
 
     return {
-        markBoard, checkValidity, checkBoard
+        markBoard, checkValidMove, checkBoard
     }
 })();
 
@@ -160,11 +149,11 @@ const game = function() {
     function playRound(inputRow, inputColumn) {
         console.log(`${getActivePlayer().name} marks the board...`)
         placeMarker(inputRow, inputColumn);
-        // console.log(gameBoard.checkValidity());
-        if (gameBoard.checkValidity() == true) {
-            // switchPlayerTurn();
-            printNewRound();
+        // console.log(gameBoard.checkValidMove());
+        if (gameBoard.checkValidMove() == true) {
             gameBoard.checkBoard();
+            console.log(result);
+            checkForWinner();
         } else {
             // do nothing
             console.log("Please choose a different square")
@@ -174,6 +163,15 @@ const game = function() {
 
     const printNewRound = () => {
         console.log(`${getActivePlayer().name}'s turn`);
+    }
+
+    const checkForWinner = () => {
+        if (result === true) {
+            console.log(`${getActivePlayer().name} wins!`)
+        } else {
+            switchPlayerTurn();
+            printNewRound();
+        }
     }
 
     printNewRound();
