@@ -93,6 +93,15 @@ body {
     background-size: contain;
 }
 
+.player-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: rgb(255, 255, 255, 0.95);
+    color: black;
+}
+
 /*_______________Footer_______________*/
 
 .footer {
