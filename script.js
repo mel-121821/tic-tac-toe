@@ -37,6 +37,7 @@ const gameBoard = (function() {
         } else {
             // do nothing
             moveValid = false;
+            console.log(board);
             console.log("There is a marker here already")
         }
     };
@@ -118,11 +119,14 @@ const gameBoard = (function() {
         console.log(board);
     }
 
+    const getBoard = () => board;
+
 
     checkBoard();
 
     return {
-        markBoard, checkValidMove, checkBoard, clearBoard
+        // move checkValidMove, CheckBoard to gameController?
+        markBoard, checkValidMove, checkBoard, clearBoard, getBoard
     }
 })();
 
@@ -164,7 +168,7 @@ const Players = function() {
 // __________Game Flow______________
 
 
-const game = function() {
+function gameController(){ 
     let activePlayer = Players.getPlayers()[0];
     // console.log(activePlayer);
 
@@ -214,10 +218,44 @@ const game = function() {
 
     printNewRound();
 
-    return {getActivePlayer, playRound}
+    return {getActivePlayer, playRound, getBoard: gameBoard.getBoard}
 
-}();
+};
 
+const game = gameController();
+
+function screenController() {
+    const game = gameController();
+    const playerDiv = document.querySelector('.player-div');
+    const boardDiv = document.querySelector('.board-div');
+
+    const updateScreen = () => {
+        // clear the board
+        boardDiv.textContent = "";
+
+        // get the newes version of board and player turn
+        const board = game.getBoard();
+        const activePlayer = game.getActivePlayer();
+
+        // display player's turn
+        playerDiv.textContent = `${activePlayer.name}'s turn...`;
+
+        board.forEach(row => {
+            row.forEach((cell, index) => {
+                //anything clickable should be a button
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("cell");
+                // create data attribute to identify the column - this makes it easier to pass into our playRound function
+                cellButton.dataset.column = index;
+                cellButton.textContent = cell[index];
+                boardDiv.appendChild(cellButton);
+            }) 
+        })
+    }
+    updateScreen();
+}
+
+screenController();
 
 
 
