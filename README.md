@@ -67,3 +67,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 Adding a break to a for loop:
 https://stackoverflow.com/questions/9830650/how-to-stop-a-javascript-for-loop
+
+indexOf in 2d arrays:
+https://stackoverflow.com/questions/24943200/javascript-2d-array-indexof
