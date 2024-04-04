@@ -222,7 +222,7 @@ function gameController(){
 
 };
 
-const game = gameController();
+// const game = gameController();
 
 function screenController() {
     const game = gameController();
@@ -241,17 +241,34 @@ function screenController() {
         playerDiv.textContent = `${activePlayer.name}'s turn...`;
 
         board.forEach(row => {
+            // console.log(board.indexOf(row))
             row.forEach((cell, index) => {
                 //anything clickable should be a button
                 const cellButton = document.createElement("button");
                 cellButton.classList.add("cell");
                 // create data attribute to identify the column - this makes it easier to pass into our playRound function
+                cellButton.dataset.row = board.indexOf(row);
                 cellButton.dataset.column = index;
-                cellButton.textContent = cell[index];
+                cellButton.textContent = cell;
+                // console.log(cell[index])
+                // console.log(cell)
                 boardDiv.appendChild(cellButton);
             }) 
         })
     }
+
+    function clickHandlerBoard(e) {
+        const selectedCellRow = e.target.dataset.row;
+        const selectedCellCol = e.target.dataset.column;
+        console.log(selectedCellRow, selectedCellCol)
+        // make sure the columnn is clicked and not the gaps in between
+        // if (!selectedCell) return;
+        game.playRound(selectedCellRow, selectedCellCol);
+        updateScreen()
+    }
+    boardDiv.addEventListener("click", clickHandlerBoard);
+
+    // initial render
     updateScreen();
 }
 
