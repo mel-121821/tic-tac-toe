@@ -49,9 +49,9 @@ const gameBoard = (function() {
         // console.log(array);
         // console.log(array[0]);
         if (array.every(val => val === array[0]) && (array[0] !== "")) {
-            result = true
+            threeWayMatch = true
         } else {
-            result = false
+            threeWayMatch = false
         }
     };
     
@@ -79,10 +79,10 @@ const gameBoard = (function() {
         getAllBoardCombos();
         for (combo of allBoardCombos) {
             arrayMatch(combo);
-            if (result === true) {
+            if (threeWayMatch === true) {
                 break
             }
-            // console.log(result)
+            // console.log(threeWayMatch)
         }
         resetAllBoardCombos();
     }
@@ -189,7 +189,7 @@ function gameController(){
         // console.log(gameBoard.checkValidMove());
         if (gameBoard.checkValidMove() == true) {
             gameBoard.checkBoard();
-            console.log(`Is there a winner? ${result}`);
+            console.log(`Is there a winner? ${threeWayMatch}`);
             console.log(`Is the board full? ${boardFull}`)
             checkForWinner();
         } else {
@@ -204,10 +204,10 @@ function gameController(){
     }
 
     const checkForWinner = () => {
-        if (result === true) {
+        if (threeWayMatch === true) {
             console.log(`${getActivePlayer().name} wins!`)
             // gameBoard.clearBoard();
-        } else if (result === false && boardFull === true) {
+        } else if (threeWayMatch === false && boardFull === true) {
             console.log("Tie game!")
             // gameBoard.clearBoard();
         } else {
@@ -233,7 +233,7 @@ function screenController() {
         // clear the board
         boardDiv.textContent = "";
 
-        // get the newes version of board and player turn
+        // get the newest version of board and player turn
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
 
