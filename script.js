@@ -240,6 +240,16 @@ function screenController() {
         // display player's turn
         playerDiv.textContent = `${activePlayer.name}'s turn...`;
 
+        const playerDisplay = () => {
+            if (threeWayMatch === true) {
+                console.log(threeWayMatch)
+                playerDiv.textContent = `${activePlayer.name} wins!`;
+            } else {
+                playerDiv.textContent = `${activePlayer.name}'s turn...`;
+            }
+        }
+        playerDisplay();
+
         board.forEach(row => {
             // console.log(board.indexOf(row))
             row.forEach((cell, index) => {
