@@ -224,6 +224,8 @@ function gameController(){
 
 // const game = gameController();
 
+// __________Display Control______________
+
 function screenController() {
     const game = gameController();
     const playerDiv = document.querySelector('.player-div');
@@ -283,6 +285,8 @@ function screenController() {
 }
 
 screenController();
+
+// __________Get Player Data______________
 
 
 
