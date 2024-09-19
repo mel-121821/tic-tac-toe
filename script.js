@@ -177,6 +177,10 @@ function gameController(){
         // console.log(activePlayer);
     }
 
+    const setToPlayerOne = () => {
+        activePlayer = Players.getPlayers()[0];
+    }
+
     const getActivePlayer = () => activePlayer;
 
     function placeMarker(inputRow, inputColumn){
@@ -218,7 +222,7 @@ function gameController(){
 
     printNewRound();
 
-    return {getActivePlayer, playRound, getBoard: gameBoard.getBoard}
+    return {getActivePlayer, playRound, getBoard: gameBoard.getBoard, setToPlayerOne}
 
 };
 
@@ -230,6 +234,7 @@ function screenController() {
     const game = gameController();
     const playerDiv = document.querySelector('.player-div');
     const boardDiv = document.querySelector('.board-div');
+    const resetButton = document.querySelector('.reset-banner > button')
 
     const updateScreen = () => {
         // clear the board
@@ -279,6 +284,13 @@ function screenController() {
         updateScreen()
     }
     boardDiv.addEventListener("click", clickHandlerBoard);
+
+    resetButton.addEventListener("click", () => {   
+        gameBoard.clearBoard();
+        game.setToPlayerOne()
+        updateScreen();
+        console.log("clicked");
+    });
 
     // initial render
     updateScreen();
