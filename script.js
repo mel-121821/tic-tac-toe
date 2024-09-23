@@ -244,6 +244,10 @@ function screenController() {
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
 
+        // console.log(board[0][0]);
+        // console.log(threeWayMatch);
+        gameBoard.checkBoard();
+
         // display player's turn
         playerDiv.textContent = `${activePlayer.name}'s turn...`;
 
@@ -281,13 +285,16 @@ function screenController() {
         // make sure the columnn is clicked and not the gaps in between
         // if (!selectedCell) return;
         game.playRound(selectedCellRow, selectedCellCol);
-        updateScreen()
+        updateScreen();
     }
+
     boardDiv.addEventListener("click", clickHandlerBoard);
 
     resetButton.addEventListener("click", () => {   
         gameBoard.clearBoard();
         game.setToPlayerOne()
+        // gameBoard.checkBoard();
+        // playerDisplay();
         updateScreen();
         console.log("clicked");
     });
