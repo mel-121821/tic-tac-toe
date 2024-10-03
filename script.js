@@ -255,6 +255,8 @@ function screenController() {
             if (threeWayMatch === true) {
                 console.log(threeWayMatch)
                 playerDiv.textContent = `${activePlayer.name} wins!`;
+            } else if (threeWayMatch === false && boardFull === true) {
+                playerDiv.textContent = "Tie game!"
             } else {
                 playerDiv.textContent = `${activePlayer.name}'s turn...`;
             }
@@ -276,6 +278,11 @@ function screenController() {
                 boardDiv.appendChild(cellButton);
             }) 
         })
+
+    }
+
+    function boardDisable() {
+        cellButton.disabled = true
     }
 
     function clickHandlerBoard(e) {
@@ -288,7 +295,13 @@ function screenController() {
         updateScreen();
     }
 
-    boardDiv.addEventListener("click", clickHandlerBoard);
+    boardDiv.addEventListener("click", function(e) {
+        if (threeWayMatch === true) {
+            // do nothing
+        } else {
+            clickHandlerBoard(e)
+        }
+    });
 
     resetButton.addEventListener("click", () => {   
         gameBoard.clearBoard();
@@ -301,6 +314,7 @@ function screenController() {
 
     // initial render
     updateScreen();
+    
 }
 
 screenController();
