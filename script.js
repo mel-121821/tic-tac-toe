@@ -77,6 +77,7 @@ const gameBoard = (function() {
     const checkBoard = () => {
         checkAvailableSpaces();
         getAllBoardCombos();
+        // console.log(allBoardCombos);
         for (combo of allBoardCombos) {
             arrayMatch(combo);
             if (threeWayMatch === true) {
@@ -88,21 +89,14 @@ const gameBoard = (function() {
     }
 
     const checkAvailableSpaces = () => {
-        boardFull = false;
-        for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board[i].length; j++) {
-                // console.log(board[i][j])
-                if (board[i][j] === "") {
-                    boardFull = false;
-                    break;
-                } else {
-                    boardFull = true;
-                }
-            }
+        // boardFull = false;
+        function spaceCheck(board) {
+        boardFull = board.every(row => row.every(cell => cell === "X" || cell === "O"));
         }
-        return boardFull;
-        // console.log(board)
+        spaceCheck(board);
         // console.log(boardFull)
+        // console.log(board)
+        return boardFull;
     }
 
     const clearBoard = () => {
@@ -122,7 +116,7 @@ const gameBoard = (function() {
     const getBoard = () => board;
 
 
-    checkBoard();
+    // checkBoard();
 
     return {
         // move checkValidMove, CheckBoard to gameController?
@@ -158,9 +152,6 @@ const Players = function() {
     
     return {getPlayers};
 }();
-
-
-
 
 
 
@@ -213,6 +204,7 @@ function gameController(){
             // gameBoard.clearBoard();
         } else if (threeWayMatch === false && boardFull === true) {
             console.log("Tie game!")
+            console.log(boardFull)
             // gameBoard.clearBoard();
         } else {
             switchPlayerTurn();
@@ -220,7 +212,7 @@ function gameController(){
         }
     }
 
-    printNewRound();
+    // printNewRound();
 
     return {getActivePlayer, playRound, getBoard: gameBoard.getBoard, setToPlayerOne}
 
@@ -246,18 +238,19 @@ function screenController() {
 
         // console.log(board[0][0]);
         // console.log(threeWayMatch);
-        gameBoard.checkBoard();
+        // gameBoard.checkBoard();
 
         // display player's turn
-        playerDiv.textContent = `${activePlayer.name}'s turn...`;
+        // playerDiv.textContent = `${activePlayer.name}'s turn...`;
 
         const playerDisplay = () => {
+            gameBoard.checkBoard();
             if (threeWayMatch === true) {
                 console.log(threeWayMatch)
                 playerDiv.textContent = `${activePlayer.name} wins!`;
-            } else if (threeWayMatch === false && boardFull === true) {
-                playerDiv.textContent = "Tie game!"
-            } else {
+             } else if (threeWayMatch === false && boardFull === true) {
+                 playerDiv.textContent = "Tie game!"
+            } else if (threeWayMatch === false && boardFull === false) {
                 playerDiv.textContent = `${activePlayer.name}'s turn...`;
             }
         }
@@ -278,7 +271,6 @@ function screenController() {
                 boardDiv.appendChild(cellButton);
             }) 
         })
-
     }
 
     function boardDisable() {
@@ -345,3 +337,57 @@ screenController();
 // console.log(dustin.marker);
 // console.log(dustin.placeMarker(1, 0))
 // console.log(dustin.placeMarker(1, 0))
+
+//________________CheckAvailableSpaces Code Brainstorming________________
+
+// const checkAvailableSpaces = () => {
+//     boardFull = false;
+//     function spaceCheck(board) {
+//     boardFull = board.every(row => row.every(cell => cell === "X" || cell === "O"));
+//     }
+//____________Working Function Above_________
+
+// ______________Unused Code Below__________
+//     spaceCheck(board);
+//     console.log(spaceCheck(board))
+//     // let spaceCheck = (row => row.every(cell => console.log(indexOf(cell))));
+//     // console.log(board.every(spaceCheck))
+//     // if (spaceCheck.board === true) {
+//     //     boardFull = true;
+//     // } else {
+//     //     boardFull = false
+//     // }
+//     console.log(boardFull)
+//     // const boardSpace = (space) => 
+//     //     space === "X" || space === "O";
+//     // // should return true
+//     //boardFull = board.some(x => x === "");
+//     // console.log(board.some(boardSpace))
+//     // console.log(boardSpace)
+//     // console.log(boardFull);
+//     console.log(board)
+//     // board.every(function (i) {
+//     //     if (i === "X" || i === "O") {
+//     //         boardFull = true
+//     //     } else {
+//     //         boardFull = false
+//     //     }
+
+//     // })
+//     // for (let i = 0; i < board.length; i++) {
+//     //     for (let j = 0; j < board[i].length; j++) {
+//     //         // console.log(board)
+//     //         if (board[i][j] === "") {
+//     //             boardFull = false;
+//     //             // break;
+//     //         } else {
+//     //             console.log(board[i][j])
+//     //             boardFull = true;
+//     //             console.log(boardFull);
+//     //         }
+//     //     }
+//     // }
+//     return boardFull;
+//     // console.log(board)
+//     // console.log(boardFull)
+// }
