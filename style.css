@@ -119,6 +119,10 @@ body {
 .cell {
     display:flex;
     background: var(--translucent-white);
+    font-size: 80px;
+    justify-content: center;
+    align-items: center;
+
 }
 
 /*_______________Reset Banner_______________*/
