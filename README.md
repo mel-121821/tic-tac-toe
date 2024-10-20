@@ -70,3 +70,12 @@ https://stackoverflow.com/questions/9830650/how-to-stop-a-javascript-for-loop
 
 indexOf in 2d arrays:
 https://stackoverflow.com/questions/24943200/javascript-2d-array-indexof
+
+Checking for a value in a 2d array (solution using the .some() method):
+https://stackoverflow.com/questions/48538162/how-to-check-if-a-two-dimensional-array-includes-a-string
+
+Checking for a value in a 2d array (solution using the .every() method):
+https://stackoverflow.com/questions/53897673/check-if-all-values-in-array-are-true-then-return-a-true-boolean-statement-jav
+
+Best Solution:
+https://stackoverflow.com/questions/56022154/how-to-check-every-item-in-a-2d-array-for-specific-condition
