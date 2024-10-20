@@ -79,3 +79,6 @@ https://stackoverflow.com/questions/53897673/check-if-all-values-in-array-are-tr
 
 Best Solution:
 https://stackoverflow.com/questions/56022154/how-to-check-every-item-in-a-2d-array-for-specific-condition
+
+Changing a value in a object:
+https://stackoverflow.com/questions/4689856/how-to-change-value-of-object-which-is-inside-an-array-using-javascript-or-jquer
