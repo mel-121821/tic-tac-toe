@@ -134,23 +134,33 @@ const gameBoard = (function() {
 // ____________Players________________
 
 const Players = function() {
-    const playerOne = "Player One"
-    const playerTwo = "Player Two"
+   
+    // let playerOne = ""
+    // let playerTwo = ""
 
     const players = [
         {
-            name: playerOne,
+            name: "Player one",
             marker: "X"
         },
         {
-            name: playerTwo,
+            name: "",
             marker: "O"
         }
     ]
 
+    function addPlayerNames(input1, input2) {
+        obj1 = players.findIndex(obj => obj.marker === "X")
+        console.log(players[obj1]);
+        players[obj1].name = input1;
+        obj2 = players.findIndex(obj => obj.marker === "O")
+        console.log(players[obj2]);
+        players[obj2].name = input2;
+    }
+
     const getPlayers = () => players;
     
-    return {getPlayers};
+    return {getPlayers, addPlayerNames};
 }();
 
 
@@ -226,7 +236,23 @@ function screenController() {
     const game = gameController();
     const playerDiv = document.querySelector('.player-div');
     const boardDiv = document.querySelector('.board-div');
-    const resetButton = document.querySelector('.reset-banner > button')
+    const resetButton = document.querySelector('.reset-banner > button');
+    
+    const formPopup = document.querySelector('.player-name-form');
+    const form = document.querySelector('.player-name-form > form')
+
+    const playerOneInput = document.querySelector('#player-one');
+    const playerTwoInput = document.querySelector('#player-two');
+    
+    formPopup.showModal();
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        Players.addPlayerNames(playerOneInput.value, playerTwoInput.value);
+        form.reset();
+        formPopup.close();
+        updateScreen();
+    })
 
     const updateScreen = () => {
         // clear the board
@@ -273,9 +299,9 @@ function screenController() {
         })
     }
 
-    function boardDisable() {
-        cellButton.disabled = true
-    }
+    // function boardDisable() {
+    //     cellButton.disabled = true
+    // }
 
     function clickHandlerBoard(e) {
         const selectedCellRow = e.target.dataset.row;
@@ -302,6 +328,7 @@ function screenController() {
         // playerDisplay();
         updateScreen();
         console.log("clicked");
+        formPopup.showModal();
     });
 
     // initial render
