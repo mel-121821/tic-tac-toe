@@ -56,9 +56,22 @@ table {
 /*__________________________________________*/
 
 :root {
-   --bg-color: rgba(37, 224, 27, 0.414); 
+   --bg-color: rgba(37, 224, 27, 0.414);
+   --bg-color-translucent: rgb(129, 255, 122); 
+   --bg-color-solid: rgba(37, 224, 27);
    --bg-color-pale: rgba(37, 224, 27, 0.15);
    --translucent-white: rgb(255, 255, 255, 0.9);
+
+   /* Color palette pulled from bg image */
+    --coyote: rgba(128, 98, 78, 1);
+    --raw-umber: rgba(143, 106, 79, 1);
+    --beaver: rgba(176, 142, 117, 1);
+    --desert-sand: rgba(231, 207, 185, 1);
+    --champagne-pink: rgba(237, 219, 208, 1);
+    --chamoisee: rgba(172, 133, 103, 1);
+    --licorice: rgba(31, 22, 16, 1);
+    --caf-noir: rgba(75, 51, 31, 1);
+
 }
 
 * {
@@ -72,36 +85,131 @@ table {
 body {
     font-size: 16px;
     display: grid;
-    grid-template-rows: 70px 50px 1fr 50px;
+    grid-template-rows: 90px 50px 1fr 50px;
     height: 100vh;
 }
+
+/* _______________Form Popup_________________ */
+
+.player-name-form {
+    width: 400px;
+    height: 340px;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    background: radial-gradient(var(--champagne-pink), var(--desert-sand)); 
+    border: none;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+}
+
+.player-name-form::backdrop {
+    background-color: rgb(0, 0, 0, 0.5);
+}
+
+form {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    color: var(--licorice);
+}
+
+legend {
+    align-self: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--licorice);
+}
+
+.user-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-one-div > label,
+.player-two-div > label {
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+input[type="text"] {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    border: 0;
+    box-shadow: 2px 2px 4px var(--coyote);
+    outline: 0;
+    padding: 5px;
+    background-color: white;
+}
+
+input[type="text"]:focus {
+    box-shadow: 3px 3px 4px var(--caf-noir);
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+}
+
+.submit-player-names {
+    margin-top: auto;
+}
+
+.submit-player-names {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-player-names > button {
+    width: 50%;
+    font-size: 1.2rem;
+}
+
+button {    
+    padding: 10px 30px;
+    background: radial-gradient(var(--caf-noir), var(--licorice));
+    color: var(--champagne-pink);
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+button:hover {
+    filter: contrast(150%);
+}
+
 
 /* _______________Header_________________ */
 
 .header {
     display: flex;
-    height: 70px;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    background: var(--bg-color);
+    background: radial-gradient(var(--caf-noir), var(--licorice));
+    color: var(--desert-sand);
 }
 
 .player-div {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
-    background: var(--bg-color-pale);
-    color: black;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: radial-gradient(var(--desert-sand), var(--caf-noir));
+    color: var(--licorice);
 }
 
 /*_______________Main_______________*/
 
 .main {
-    background-image: url('img/bg-clover.jpg');
-    background-size: contain;
+    background-image: url('img/bg-wood-grain.jpg');
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,16 +221,18 @@ body {
     width: 350px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    margin-top: 2vh;
+    margin-top: 5vh;
 }
 
 .cell {
     display:flex;
-    background: var(--translucent-white);
-    font-size: 80px;
+    background: radial-gradient(white 70%, var(--champagne-pink));
+    border: 2px solid var(--coyote);
+    font-size: 4.2rem;
     justify-content: center;
     align-items: center;
-
+    border-radius: 10px;
+    color: var(--caf-noir);
 }
 
 /*_______________Reset Banner_______________*/
@@ -132,11 +242,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 70px;
     Width: 350px;
     margin-top: 2vh;
-    background: var(--translucent-white);
+    background: radial-gradient(white 70%, var(--champagne-pink));
     color: black;
+    border-radius: 20px;
 }
 
 /*_______________Footer_______________*/
@@ -146,7 +257,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--bg-color);
+    background: radial-gradient(var(--caf-noir), var(--licorice));
+    color: var(--desert-sand);
 }
 
 .icon {
@@ -160,5 +272,5 @@ body {
 .footer-icon > a > .svg{
     height: 40px;
     width: 40px;
-    pointer-events: none;
+    pointer-events: none; 
 }
