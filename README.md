@@ -28,10 +28,17 @@ Media:
 Dummy bg image: PIRO from Pixabay
 https://pixabay.com/photos/clover-four-leaf-clover-lucky-clover-1949981/
 
+Final bg image: Michael Schwarzenberger from Pixabay
+https://pixabay.com/photos/wood-board-structure-boards-grain-591631/
+
+
+
 ____________________________________________
 
 
 Tools:
+
+Pull color palette from an image: https://coolors.co/image-picker
 
 ____________________________________________
 
