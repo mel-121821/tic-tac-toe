@@ -85,7 +85,7 @@ table {
 body {
     font-size: 16px;
     display: grid;
-    grid-template-rows: 90px 50px 1fr 50px;
+    grid-template-rows: 90px 60px 1fr 60px;
     height: 100vh;
 }
 
@@ -99,7 +99,7 @@ body {
     margin-top: -200px;
     margin-left: -200px;
     background: radial-gradient(var(--champagne-pink), var(--desert-sand)); 
-    border: none;
+    border: 2px solid var(--caf-noir);
     border-radius: 20px;
     padding: 30px;
     position: relative;
@@ -171,11 +171,12 @@ input[type="text"]:focus {
 button {    
     padding: 10px 30px;
     background: radial-gradient(var(--caf-noir), var(--licorice));
-    color: var(--champagne-pink);
+    color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 15px;
     font-size: 1.1rem;
     font-weight: 700;
+    cursor: pointer;
 }
 
 button:hover {
@@ -189,20 +190,21 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     background: radial-gradient(var(--caf-noir), var(--licorice));
-    color: var(--desert-sand);
+    color: var(--champagne-pink);
 }
 
 .player-div {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    background: radial-gradient(var(--desert-sand), var(--caf-noir));
+    background: linear-gradient(var(--beaver), var(--desert-sand), var(--champagne-pink), var(--desert-sand), var(--beaver));
     color: var(--licorice);
+    border: 2px solid var(--caf-noir);
 }
 
 /*_______________Main_______________*/
@@ -217,8 +219,8 @@ button:hover {
 
 .board-div {
     display: grid;
-    height: 350px;
-    width: 350px;
+    height: 370px;
+    width: 370px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     margin-top: 5vh;
@@ -233,6 +235,7 @@ button:hover {
     align-items: center;
     border-radius: 10px;
     color: var(--caf-noir);
+    cursor: pointer;
 }
 
 /*_______________Reset Banner_______________*/
@@ -243,10 +246,12 @@ button:hover {
     align-items: center;
     justify-content: center;
     height: 70px;
-    Width: 350px;
+    Width: 370px;
     margin-top: 2vh;
-    background: radial-gradient(white 70%, var(--champagne-pink));
+    /* background: linear-gradient(var(--beaver), var(--champagne-pink), white 60%, var(--champagne-pink), var(--beaver)); */
+    background: radial-gradient(white 60%, var(--champagne-pink), var(--beaver));
     color: black;
+    border: 2px solid var(--caf-noir);
     border-radius: 20px;
 }
 
@@ -254,11 +259,13 @@ button:hover {
 
 .footer {
     font-weight: 700;
+    font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background: radial-gradient(var(--caf-noir), var(--licorice));
-    color: var(--desert-sand);
+    color: white;
+    border: 2px solid var(--licorice);
 }
 
 .icon {
