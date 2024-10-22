@@ -13,10 +13,14 @@
         <form action="" method="post">
             <legend>State your Names</legend>
             <div class="user-inputs">
-                <label for="player-one">Player One</label>
-                <input type="text" id="player-one" name="player-one" placeholder="Bob" required>
-                <label for="player-two">Player Two</label>
-                <input type="text" id="player-two" name="player-two" placeholder="Jack" required>
+                <div class="player-one-div">
+                    <label for="player-one">First Player:</label>
+                    <input type="text" id="player-one" name="player-one" required>
+                </div>
+                <div class="player-two-div">
+                    <label for="player-two">Second Player:</label>
+                    <input type="text" id="player-two" name="player-two" required>
+                </div>
             </div>
             <div class="submit-player-names">
                 <button type="submit">Submit</button>
