@@ -5,7 +5,7 @@
 }
 
 path {
-    fill:  black;
+    fill: rgba(231, 207, 185, 1);
 }
 
 svg:hover {
