@@ -214,6 +214,15 @@ function screenController() {
         }
         playerDisplay();
 
+        const toggleBoard = () => {
+           if (threeWayMatch === true || boardFull === true) {
+                boardDiv.classList.add('stop-btn-effects');
+            } else { 
+                boardDiv.classList.remove('stop-btn-effects');
+            };
+        };
+        toggleBoard();
+
         board.forEach(row => {
             row.forEach((cell, index) => {
                 //anything clickable should be a button
@@ -226,7 +235,7 @@ function screenController() {
                 boardDiv.appendChild(cellButton);
             }) 
         })
-    }
+    };
 
     function clickHandlerBoard(e) {
         const selectedCellRow = e.target.dataset.row;
@@ -254,6 +263,6 @@ function screenController() {
 
     // initial render
     updateScreen();
-}
+};
 
 screenController();
