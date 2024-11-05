@@ -183,6 +183,10 @@ button:hover {
     filter: contrast(150%);
 }
 
+.stop-btn-effects {
+    pointer-events: none;
+}
+
 
 /* _______________Header_________________ */
 
