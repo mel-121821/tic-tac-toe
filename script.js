@@ -36,14 +36,6 @@ const gameBoard = (function() {
     };
 
     const checkValidMove = () => moveValid;
-
-    const arrayMatch = (array) => {
-        if (array.every(val => val === array[0]) && (array[0] !== "")) {
-            threeWayMatch = true
-        } else {
-            threeWayMatch = false
-        }
-    };
     
     let allBoardCombos = [];
 
@@ -65,22 +57,23 @@ const gameBoard = (function() {
     }
 
     const checkBoard = () => {
-        checkAvailableSpaces();
+        // checkAvailableSpaces();
         getAllBoardCombos();
+        let match;
         for (combo of allBoardCombos) {
-            arrayMatch(combo);
-            if (threeWayMatch === true) {
+            if (combo.every(val => val === combo[0]) && (combo[0] !== "")) {
+                match = true
                 break
+            } else {
+                match = false
             }
         }
         resetAllBoardCombos();
+        return match
     }
 
     const checkAvailableSpaces = () => {
-        function spaceCheck(board) {
-        boardFull = board.every(row => row.every(cell => cell === "X" || cell === "O"));
-        }
-        spaceCheck(board);
+        let boardFull = board.every(row => row.every(cell => cell === "X" || cell === "O")) ? true : false;
         return boardFull;
     }
 
@@ -95,7 +88,7 @@ const gameBoard = (function() {
     const getBoard = () => board;
 
     return {
-        markBoard, checkValidMove, checkBoard, clearBoard, getBoard
+        markBoard, checkValidMove, checkBoard, clearBoard, getBoard, checkAvailableSpaces
     }
 })();
 
@@ -150,7 +143,7 @@ function gameController(){
     function playRound(inputRow, inputColumn) {
         placeMarker(inputRow, inputColumn);
         if (gameBoard.checkValidMove() == true) {
-            gameBoard.checkBoard();
+            // gameBoard.checkBoard();
             checkForWinner();
         } else {
             // do nothing, player has not marked a valid square
@@ -158,7 +151,7 @@ function gameController(){
     }
 
     const checkForWinner = () => {
-        if (threeWayMatch === true || boardFull === true) {
+        if (gameBoard.checkBoard() === true || gameBoard.checkAvailableSpaces() === true) {
             // do nothing, the game is ended
         } else {
             switchPlayerTurn();
@@ -198,24 +191,27 @@ function screenController() {
         // clear the board
         boardDiv.textContent = "";
 
+        let match = gameBoard.checkBoard();
+        let boardFull = gameBoard.checkAvailableSpaces()
+
         // get the newest version of board and player turn
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
 
         const playerDisplay = () => {
-            gameBoard.checkBoard();
-            if (threeWayMatch === true) {
+            // let match = gameBoard.checkBoard();
+            if (match === true) {
                 playerDiv.textContent = `${activePlayer.name} wins!`;
-             } else if (threeWayMatch === false && boardFull === true) {
+             } else if (match === false && boardFull === true) {
                  playerDiv.textContent = "Tie game!"
-            } else if (threeWayMatch === false && boardFull === false) {
+            } else if (match === false && boardFull === false) {
                 playerDiv.textContent = `${activePlayer.name}'s turn...`;
             }
         }
         playerDisplay();
 
         const toggleBoard = () => {
-           if (threeWayMatch === true || boardFull === true) {
+           if (match === true || boardFull === true) {
                 boardDiv.classList.add('stop-btn-effects');
             } else { 
                 boardDiv.classList.remove('stop-btn-effects');
@@ -247,7 +243,7 @@ function screenController() {
     }
 
     boardDiv.addEventListener("click", function(e) {
-        if (threeWayMatch === true) {
+        if (gameBoard.checkBoard() === true) {
             // do nothing, game has ended
         } else {
             clickHandlerBoard(e)
